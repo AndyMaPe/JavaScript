@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScriptn DOM Event Delegation</title>
+
+</head>
+
+<body>
+    <form name=lenguaje>
+        <input type="radio" 
+               id="currentLanguage" name="currentLanguage" onclick="changeDelagate(this)"
+            value="english">Ingles <br>
+        <input type="radio" id="currentLanguage" name="currentLanguage" onclick="changeDelagate(this)"
+            value="spanish">Español <br>
+        <input type="button" id="btnAlterUser" value="Message">
+
+
+        <script>
+        //Esta es una manera 
+          /*  function saludaUsuario() {
+                alert("Hola, usuario!");
+            }
+
+            function greetUsuer() {
+                alert("Hello, user!");
+            }
+
+            function changeDelagate(radioButton) {
+                let boton = document.getElementById("btnAlterUser");
+                boton.removeEventListener("click", greetUsuer);
+                boton.removeEventListener("click", saludaUsuario);
+                if (radioButton.value === "english")
+                    boton.addEventListener("click", greetUsuer);
+                else
+                    boton.addEventListener("click", saludaUsuario);
+            }*/
+
+//otra manera de delegacion de eventos con el eventHandler 
+            let saludaUsuario = function () {
+                alert("Hola, usuario!");
+            }
+
+            let greetUsuer = function() {
+                alert("Hello, user!");
+            }
+
+            let eventHandler;
+
+            function changeDelagate(radioButton) {
+                let boton = document.getElementById("btnAlterUser");
+                boton.removeEventListener("click",eventHandler);
+                if (radioButton.value === "english")
+                    eventHandler = greetUsuer;
+               else
+                     eventHandler  = saludaUsuario;
+                    boton.addEventListener("click", eventHandler);
+            }
+
+        </script>
+</body>
+
+</html>
